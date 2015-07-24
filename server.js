@@ -1,5 +1,6 @@
 var express = require('express'),
 mongoose = require('mongoose'),
+bodyParser  = require('body-parser'),
 fs = require('fs');
 
 var mongoUri = 'mongodb://localhost/the-game';
@@ -11,9 +12,9 @@ db.on('error', function () {
 
 var app = express();
 
-app.configure(function(){
-  app.use(express.bodyParser());
-});
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
 
 require('./models/player');
 require('./routes')(app);
