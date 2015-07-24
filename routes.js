@@ -6,4 +6,5 @@ module.exports = function(app){
     app.put('/players/:id', players.update);
     app.delete('/players/:id', players.delete); // Unecessary?
     app.get('/import', players.import);
+    app.get('/reset', players.deleteAll);
 }

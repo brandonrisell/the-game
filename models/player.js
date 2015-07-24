@@ -3,7 +3,8 @@ Schema = mongoose.Schema;
 
 var PlayerSchema = new Schema({
   name: String,
-  units: []
+  units: [],
+  cells: []
 });
 
 mongoose.model('Player', PlayerSchema);
