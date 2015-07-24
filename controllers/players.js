@@ -11,14 +11,20 @@ exports.findById = function() {};
 exports.add = function() {};
 exports.update = function() {};
 exports.delete = function() {};
+exports.deleteAll = function(req, res) {
+  Player.remove(function(err){
+    if (err) return console.log(err);
+    return res.sendStatus(202);
+  });
+};
 exports.import = function(req, res){
   Player.create(
-    { "name": "Ben", "units": [{location: "fe2"}] },
-    { "name": "Mike", "units": [{location: "ac6"}] },
-    { "name": "Eric", "units": [{location: "8b3"}] },
-    { "name": "Paul", "units": [{location: "7d4"}] }
+    { "name": "Ben", "units": [{locationX: "0", locationY: "0"}], "cells": [{locationX: "0", locationY: "0"}] },
+    { "name": "Mike", "units": [{locationX: "2", locationY: "2"}], "cells": [{locationX: "2", locationY: "2"}] },
+    { "name": "Eric", "units": [{locationX: "4", locationY: "4"}], "cells": [{locationX: "4", locationY: "4"}] },
+    { "name": "Paul", "units": [{locationX: "6", locationY: "6"}], "cells": [{locationX: "6", locationY: "6"}] }
   , function (err) {
     if (err) return console.log(err);
-    return res.send(202);
+    return res.sendStatus(202);
   });
 };
