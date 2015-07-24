@@ -3,6 +3,7 @@ Schema = mongoose.Schema;
 
 var PlayerSchema = new Schema({
   name: String,
+  color: String,
   units: [],
   cells: []
 });
