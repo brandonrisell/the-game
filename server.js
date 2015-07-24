@@ -3,7 +3,9 @@ path = require('path'),
 hbs = require('hbs'),
 mongoose = require('mongoose'),
 bodyParser  = require('body-parser'),
-io = require('socket.io'),
+app = express(),
+http = require('http').Server(app),
+io = require('socket.io')(http),
 fs = require('fs');
 
 var mongoUri = 'mongodb://localhost/the-game';
@@ -13,7 +15,6 @@ db.on('error', function () {
   throw new Error('unable to connect to database at ' + mongoUri);
 });
 
-var app = express();
 
 app.set('views', './views');
 app.use(express.static('./public'));
@@ -37,7 +38,7 @@ io.on('connection', function(socket) {
     //Player.update(conditions, update, options, function() {
       
     //});
-    io.emit('player move', {playerName, targetX, targetY});
+    io.emit('player move', {playerName: playerName, targetX: targetX, targetY: targetY});
   });
 });
 
