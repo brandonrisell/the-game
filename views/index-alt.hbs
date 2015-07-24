@@ -1,0 +1,52 @@
+<h1>{{title}}</h1>
+<p>Alternate canvas layout for {{title}}</p>
+
+<canvas id="hexCanvas" width="800" height="600" style="width:800px;height:600px" />
+
+<script type="text/javascript" src="js/vendor/HexagonTools/HexagonTools.js"></script>
+<script type="text/javascript" src="js/vendor/HexagonTools/Grid.js"></script>
+
+<!--  <script type="text/javascript" src="js/main.js"></script> -->
+<script type="text/javascript">
+	
+	// parseFloat(document.getElementById("sideLength").value);
+	// parseFloat(document.getElementById("whRatio").value);
+
+	var z = 50;
+	var r = 1.1547;
+	
+	//solve quadratic
+	var r2 = Math.pow(r, 2);
+	var a = (1 + r2)/r2;
+	var b = z/r2;
+	var c = ((1-4.0*r2)/(4.0*r2)) * (Math.pow(z, 2));
+	
+	var x = (-b + Math.sqrt(Math.pow(b,2)-(4.0*a*c)))/(2.0*a);
+	
+	var y = ((2.0 * x) + z)/(2.0 * r);
+	
+	var contentDiv = document.getElementById("hexStatus");
+
+	var width = ((2.0*x)+z);
+	var height = (2.0*y);
+	
+	/* contentDiv.innerHTML = "Values for Hex: <br /><b>Side Length, z:</b> " + z + "<br /><b>x:</b> " + x + "<br /><b>y:</b> " + y +
+		"<br /><b>Width:</b> " + width + "<br /><b>Height: </b>" + height; */
+	
+	HT.Hexagon.Static.WIDTH = width;
+	HT.Hexagon.Static.HEIGHT = height;
+	HT.Hexagon.Static.SIDE = z;
+
+	function drawHexGrid() {
+		var grid = new HT.Grid(800, 600);
+		var canvas = document.getElementById("hexCanvas");
+		var ctx = canvas.getContext('2d');
+		ctx.clearRect(0, 0, 800, 600);
+		for(var h in grid.Hexes)
+		{
+			grid.Hexes[h].draw(ctx);
+		}
+	}
+
+	drawHexGrid();
+</script>

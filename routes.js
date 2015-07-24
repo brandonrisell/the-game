@@ -12,4 +12,5 @@ module.exports = function(app){
     // routes for game
     var game = require('./controllers/game');
     app.get('/', game.load );
+    app.get('/alt', game.alt );
 };
