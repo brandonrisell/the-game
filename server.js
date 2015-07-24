@@ -1,7 +1,7 @@
 var express = require('express'),
-mongoose = require('mongoose'),
-bodyParser  = require('body-parser'),
-fs = require('fs');
+	mongoose = require('mongoose'),
+	bodyParser  = require('body-parser'),
+	fs = require('fs');
 
 var mongoUri = 'mongodb://localhost/the-game';
 mongoose.connect(mongoUri);
@@ -11,6 +11,10 @@ db.on('error', function () {
 });
 
 var app = express();
+
+app.set('views', './views');
+app.set('view engine', 'html');
+app.use(express.static('./public'));
 
 app.use(bodyParser.urlencoded({
   extended: true
