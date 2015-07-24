@@ -1,4 +1,6 @@
 var express = require('express'),
+	path = require('path'),
+	hbs = require('hbs'),
 	mongoose = require('mongoose'),
 	bodyParser  = require('body-parser'),
 	fs = require('fs');
@@ -13,8 +15,12 @@ db.on('error', function () {
 var app = express();
 
 app.set('views', './views');
-app.set('view engine', 'html');
 app.use(express.static('./public'));
+
+// handlebars
+hbs.registerPartials(__dirname + '/views/common');
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'hbs');
 
 app.use(bodyParser.urlencoded({
   extended: true
