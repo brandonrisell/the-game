@@ -9,15 +9,17 @@ exports.findAll = function(req, res){
 };
 exports.findById = function() {};
 exports.add = function() {};
-exports.update = function() {};
-exports.delete = function() {};
+exports.update = function(req, res) {
+  
+};
+//exports.delete = function() {};
 exports.deleteAll = function(req, res) {
   Player.remove(function(err){
     if (err) return console.log(err);
     return res.sendStatus(202);
   });
 };
-exports.import = function(req, res){
+exports.import = function(req, res) {
   Player.create(
     { "name": "Ben", "units": [{locationX: "0", locationY: "0"}], "cells": [{locationX: "0", locationY: "0"}] },
     { "name": "Mike", "units": [{locationX: "2", locationY: "2"}], "cells": [{locationX: "2", locationY: "2"}] },
