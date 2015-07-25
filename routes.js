@@ -13,4 +13,5 @@ module.exports = function(app){
     var game = require('./controllers/game');
     app.get('/', game.load );
     app.get('/alt', game.alt );
+    app.get('/goog', game.goog );
 };
